@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+   <title>不智能聊天机器人</title>
+   <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .chat-container {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            height: 400px;
+            overflow-y: scroll;
+        }
+        .message {
+            background-color: #f1f0f0;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+            width: 80%;
+            display: inline-block;
+        }
+        .user-message {
+            background-color: #90EE90;
+        }
+        .chat-input {
+            margin-top: 10px;
+            display: flex;
+        }
+        #chat-input-text {
+            flex-grow: 1;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 5px;
+            font-size: 16px;
+        }
+        #send-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>叶姥姥的不智能聊天机器人</h2>
+        <br/>
+        <h4>（您可以先问我"你可以干什么"）</h4>
+        <div class="chat-container" id="chat-container">
+            <!-- 聊天消息将在此处显示 -->
+        </div>
+        <div class="chat-input">
+         <input type="text" id="chat-input-text" placeholder="输入您的消息">
+         <button id="send-button">发送</button>
+        </div>
+    </div>
+
+ <script>
+        const chatContainer = document.getElementById('chat-container');
+        const chatInputText = document.getElementById('chat-input-text');
+        const sendButton = document.getElementById('send-button');
+
+        sendButton.addEventListener('click', () => {
+            const userMessage = chatInputText.value;
+            if (!userMessage) return;
+
+            appendMessage(userMessage, 'user-message');
+            chatInputText.value = '';
+
+            // 用您的聊天机器人 API 调用替换此处
+            setTimeout(() => {
+                const botMessage = '您可以继续提问';
+                appendMessage(botMessage, 'message');
+            }, 1000);
+        });
+
+        function appendMessage(messageText, messageClass) {
+            const message = document.createElement('div');
+            message.classList.add(messageClass);
+            message.textContent = messageText;
+            chatContainer.appendChild(message);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+
+            // 检查用户输入并给出自动回复
+            if (messageClass === 'user-message') {
+                if (messageText === '你好') {
+                    appendMessage('你好！有什么我可以帮助你的？', 'message');
+                } else if (messageText === '你是谁') {
+                    appendMessage('我是一个由叶姥姥开发的智障聊天机器人。', 'message');
+                } else if (messageText === '天气怎么样') {
+                    appendMessage('抱歉，我不能访问实时数据，但通常你可以通过天气预报来了解。', 'message');
+                } else if (messageText === '你可以干什么') {
+                    appendMessage('你可以对我说"你好"，或者问我"你是谁"/"天气怎么样"/"赖老师是谁"（目前只有这些  注意不要加标点符号）。', 'message');
+                } else if (messageText === '赖老师是谁') {
+                    appendMessage('赖老师毕业于中国清华大学，进修于哈佛大学，是一名教授。如想了解更多，请自行跳往https://yjqwan.github.io/lailaoshi。', 'message');
+                } else {
+                    appendMessage('对不起，我的主人叶姥姥传授给我的知识太少了，我还不明白你的问题。', 'message');
+                }
+            }
+        }
+    </script>
+</body>
+</html>

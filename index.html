@@ -9,7 +9,7 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f0f0;
+            background-color: #FFFFFF;
         }
         .container {
             max-width: 600px;
@@ -54,7 +54,17 @@
             cursor: pointer;
             font-size: 16px;
         }
-    </style>
+		#wenhao {
+			position: absolute;
+			top: 30px;
+			right: 30px;
+			width: 30px;
+			height: 30px;
+			border-radius: 50%;
+			border: 2px solid #FFFFFF;
+			font-size: 15px;
+		}
+	</style>
 </head>
 <body>
     <div class="container">
@@ -70,6 +80,12 @@
         </div>
     </div>
 
+        <button id="wenhao">
+	        <a href="wentizhinan.html">
+		        ?
+	        </a>
+        </button>
+	
  <script>
         const chatContainer = document.getElementById('chat-container');
         const chatInputText = document.getElementById('chat-input-text');
@@ -108,6 +124,8 @@
                     appendMessage('你可以对我说"你好"，或者问我"你是谁"/"天气怎么样"/"赖老师是谁"（目前只有这些  注意不要加标点符号）。', 'message');
                 } else if (messageText === '赖老师是谁') {
                     appendMessage('赖老师毕业于中国清华大学，进修于哈佛大学，是一名教授。如想了解更多，请自行跳往https://yjqwan.github.io/lailaoshi。', 'message');
+                } else if (messageText === '对于yjq喜欢lty这件事你怎么看') {
+                    appendMessage('关于这个传言我表示不认同，我认为这是一则赤裸裸的谣言，原因主要分为以下几个：首先，他俩都是男的，我认为yjq不是那样的人。其次，我已经问过yjq本人了，他也否认了这个传言。然后，lty曾把“跨年晚会”认成了“春晚”，这让yjq对他xxs的形象更深入了一层。更有奇葩传言“zzt和cfy暗恋yjq”都是假的！都是假的！不要再问我是不是真的了！。最后总结一下，上述情况均为谣言！全是谣言！请注意辨别，感谢大家的理解。', 'message');
                 } else {
                     appendMessage('对不起，我的主人叶姥姥传授给我的知识太少了，我还不明白你的问题。', 'message');
                 }
